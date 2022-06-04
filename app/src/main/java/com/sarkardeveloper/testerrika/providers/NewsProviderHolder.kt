@@ -1,9 +1,9 @@
 package com.sarkardeveloper.testerrika.providers
 
+import com.sarkardeveloper.testerrika.BuildConfig
 import com.squareup.moshi.Moshi
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-
 
 object NewsProviderHolder {
     val sourcesProvider: NewsProvider by lazy<NewsProvider> {
@@ -15,7 +15,7 @@ object NewsProviderHolder {
 
     private fun createRetrofit(moshi: Moshi): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://newsapi.org/v2/")
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
     }
