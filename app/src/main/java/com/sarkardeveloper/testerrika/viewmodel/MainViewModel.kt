@@ -4,13 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sarkardeveloper.testerrika.NewsRepository
-import com.sarkardeveloper.testerrika.Singletons
 import com.sarkardeveloper.testerrika.model.NewsModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel(private val newsRepository: NewsRepository = Singletons.stationsRepository) :
+class MainViewModel @Inject constructor(private val newsRepository: NewsRepository) :
     ViewModel() {
     private val scope: CoroutineScope = CoroutineScope(Dispatchers.Main)
 

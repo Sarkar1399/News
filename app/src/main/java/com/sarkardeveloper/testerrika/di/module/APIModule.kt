@@ -1,19 +1,25 @@
-package com.sarkardeveloper.testerrika.providers
+package com.sarkardeveloper.testerrika.di.module
 
 import com.sarkardeveloper.testerrika.BuildConfig
 import com.squareup.moshi.Moshi
+import dagger.Module
+import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Singleton
 
-object NewsProviderHolder {
-    val sourcesProvider: NewsProvider by lazy<NewsProvider> {
-        val moshi = Moshi.Builder().build()
-        val config = createRetrofit(moshi)
+@Module
+class APIModule {
 
-        RetrofitSourcesProvider(config)
+    @Provides
+    @Singleton
+    fun createMoshi(): Moshi {
+        return Moshi.Builder().build()
     }
 
-    private fun createRetrofit(moshi: Moshi): Retrofit {
+    @Provides
+    @Singleton
+    fun createRetrofit(moshi: Moshi): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create(moshi))

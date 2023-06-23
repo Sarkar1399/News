@@ -4,8 +4,9 @@ import com.sarkardeveloper.testerrika.BuildConfig
 import com.sarkardeveloper.testerrika.NewsSource
 import com.sarkardeveloper.testerrika.model.NewsModel
 import retrofit2.Retrofit
+import javax.inject.Inject
 
-class RetrofitNewsSource(retrofit: Retrofit) : NewsSource {
+class RetrofitNewsSource @Inject constructor(retrofit: Retrofit) : NewsSource {
 
     private val newsApi = retrofit.create(NewsAPI::class.java)
 
